@@ -18,13 +18,13 @@ int avgsalary(struct employee a[],int n){
 }
 int main(){
     int n;
-    printf("How many employee data you would like to store?");
+    printf("How many employee data you would like to store?\n");
     scanf("%d",&n);
     struct employee a[n];
 
     for (int i = 0; i < n; i++)
     {
-        printf("Enter the name address age and salary of the employee");
+        printf("Enter the name address age and salary of the employee\n");
         scanf("%s %s %d %d",a[i].name,a[i].address,&a[i].age,&a[i].salary);
     }
     int avg=avgsalary(a,n);
