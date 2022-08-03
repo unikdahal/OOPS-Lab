@@ -19,7 +19,7 @@ class complex{
         }
         void display(){
             for(int i=0;i<10;i++){
-                cout<<"Complex number "<<i+1<<": "<<real[i]<<" + "<<imag[i]<<"i"<<endl;
+                cout<<"Complex number "<<i+1<<": "<<real[i]<<" + "<<"i"<<imag[i]<<endl;
             }
         }
 
@@ -31,5 +31,5 @@ int main(){
         c.getdata();
         c.display();
         return 0;
-    
+
 }

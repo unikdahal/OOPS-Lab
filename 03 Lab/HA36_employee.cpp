@@ -20,6 +20,7 @@ class employee{
             cout<<"Enter id: ";
             cin>>id;
             cout<<"Enter name: ";
+            cin.ignore();
             getline(cin,name);
             cout<<"Enter age: ";
             cin>>age;
@@ -27,11 +28,7 @@ class employee{
             cin>>basic;
         }
         void display(){
-            cout<<"Id: "<<id<<endl;
-            cout<<"Name: "<<name<<endl;
-            cout<<"Age: "<<age<<endl;
-            cout<<"Basic salary: "<<basic<<endl;
-            cout<<"Gross salary: "<<(basic+(basic*0.8)+(basic*0.1))<<endl;
+            cout<<id<<" \t "<<name<<" \t "<<age<<"\t "<<basic<<"\t\t "<<basic+(basic*0.8)+basic*0.1<<endl;
         }
 };
 
@@ -43,6 +40,8 @@ int main(){
     for(int i=0;i<n;i++){
         e[i].getdata();
     }
+    cout<<"Id\t Name\t Age\t Basic Salary\t Gross Salary"<<endl;
+
     for(int i=0;i<n;i++){
         e[i].display();
     }
