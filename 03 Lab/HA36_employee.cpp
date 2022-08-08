@@ -40,7 +40,7 @@ int main(){
     for(int i=0;i<n;i++){
         e[i].getdata();
     }
-    cout<<"Id\t Name\t Age\t Basic Salary\t Gross Salary"<<endl;
+    cout<<endl<<"Id\t Name\t Age\t Basic Salary\t Gross Salary"<<endl;
 
     for(int i=0;i<n;i++){
         e[i].display();
