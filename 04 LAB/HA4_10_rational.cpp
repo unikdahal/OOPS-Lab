@@ -3,6 +3,21 @@
 #include<iostream>
 using namespace std;
 
+int gcd(int a,int b){
+    if(b==0){
+        return a;
+    }
+    else{
+        return gcd(b,a%b);
+    }
+}
+
+void simplify(int &a,int &b){
+    int g=gcd(a,b);
+    a=a/g;
+    b=b/g;
+    cout<<a<<"/"<<b<<endl;
+}
 class Rational{
     private:
         int num;
@@ -17,22 +32,26 @@ class Rational{
         void Sum(Rational r1,Rational r2){
             int num1=r1.num*r2.den+r2.num*r1.den;
             int den1=r1.den*r2.den;
-            cout<<"The sum is "<<num1<<"/"<<den1<<endl;
+            cout<<"The sum is ";
+            simplify(num1,den1);
         }
         void Difference(Rational r1,Rational r2){
             int num1=r1.num*r2.den-r2.num*r1.den;
             int den1=r1.den*r2.den;
-            cout<<"The difference is "<<num1<<"/"<<den1<<endl;
+            cout<<"The difference is ";
+            simplify(num1,den1);
         }
         void Product(Rational r1,Rational r2){
             int num1=r1.num*r2.num;
             int den1=r1.den*r2.den;
-            cout<<"The product is "<<num1<<"/"<<den1<<endl;
+            cout<<"The product is ";
+            simplify(num1,den1);
         }
         void divide(Rational r1,Rational r2){
             int num1=r1.num*r2.den;
             int den1=r1.den*r2.num;
-            cout<<"The quotient is "<<num1<<"/"<<den1<<endl;
+            cout<<"The quotient is ";
+            simplify(num1,den1);
         }
 };
 int main(){
