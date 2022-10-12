@@ -8,11 +8,11 @@ class Triangle
         float l,b,h;
     public:
         void get_data(){
-            cout<<"Enter the length \n"<<endl;
+            cout<<"Enter the length \n";
             cin>>l;
-            cout<<"Enter the breadth \n"<<endl;
+            cout<<"Enter the breadth \n";
             cin>>b;
-            cout<<"Enter the height \n"<<endl;
+            cout<<"Enter the height \n";
             cin>>h;
         }
         float area(){

@@ -6,26 +6,29 @@ using namespace std;
 
 class Student{
     private:
+        string name;
         int rollno;
         long long int phone;
         string address;
     public:
         void get_data(){
-            cout<<"Enter the roll no \n"<<endl;
+            cout<<"Enter name:"<<endl;
+            cin>>name;
+            cout<<"Enter the roll no"<<endl;
             cin>>rollno;
-            cout<<"Enter the phone no \n"<<endl;
+            cout<<"Enter the phone no"<<endl;
             cin>>phone;
-            cout<<"Enter the addreess \n"<<endl;
+            cout<<"Enter the addreess"<<endl;
             cin>>address;
         }
         void display(){
-            cout<<rollno<<" "<<phone<<" "<<address<<"\n";
+            cout<<name<<" "<<rollno<<" "<<phone<<" "<<address<<"\n";
         }
 
 };
 
 int main(){
-    Student s1,s2;
+    Student s1,s2;];
     s1.get_data();
     s2.get_data();
     s1.display();
