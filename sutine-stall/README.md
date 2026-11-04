@@ -1,6 +1,6 @@
 # Sutíne by Yojana — Pop-up Stall Kit (Fri 6 & Sat 7 Nov)
 
-Brand: cream `#FAF8F6`, dusty rose `#D4B0AB`/`#BD8F89`, charcoal `#292524`, terracotta dhaka accent `#B5654A`.
+Brand: cream `#FAF8F6`, dusty rose `#D4B0AB`/`#BD8F89`, charcoal `#292524`, lali maroon `#7B1E22` + olive `#6B7340` (taken from the garment borders).
 Fonts: Playfair Display + Crimson Text (the same ones sutine.com uses).
 
 ## Files (`print/` = send these to the printer)
@@ -10,9 +10,15 @@ Fonts: Playfair Display + Crimson Text (the same ones sutine.com uses).
 | 02 | Table runner | 60 × 150 cm | Fabric. Top 60 cm lies on the table; artwork sits on the 90 cm front drop (the fold line is marked) |
 | 03 | Follow Us card | A5 | 300gsm matte card, then clip it into a wooden block stand |
 | 04 | Brand story card | A5 | 300gsm matte card, displayed next to Follow Us |
-| 05 | Price, offer, sizing & payment cards | 4 × A6 on one A4 sheet | Cut along the dashed lines, fill in with a fine black pen, hang from the rail with clips |
+| 05 | Sets, offer, sizing & payment cards | 4 × A6 on one A4 sheet | Cut along the dashed lines, fill in with a fine black pen, hang from the rail with clips |
 | 06 | Thank-you / QR cards | 10 × 85×55 mm on A4 | 350gsm. Print about 10 sheets (100 cards) and put one in every bag |
 | 07 | "This weekend" poster | A4 | Post it on socials Thu & Fri, and use it on the venue board |
+| 08 | Price board (real sutine.com prices) | A4 | Frame it or stand it on an easel |
+| 09 | Hang tags, one per product, each with a QR code to that product's page | 12 × 50×90 mm on A4 | 350gsm. Punch the circle and tie on with twine. The 12th tag is blank. Print 3–4 sheets |
+| 10 | Lookbook (photos + prices + shop QR) | A4 | Put it on the table, and post it on IG |
+
+Products and prices were pulled from the sutine.com catalogue (`assets/products.json`, photos in `assets/products/`).
+If a price changes, edit `products.json` and re-run the build.
 
 `qr/` holds the standalone QR codes (SVG + PNG):
 - Instagram → https://www.instagram.com/sutine_by_yojana/

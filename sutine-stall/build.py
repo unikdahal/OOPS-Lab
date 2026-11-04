@@ -23,7 +23,7 @@ LINKS = {
 }
 
 INK = "#292524"; ROSE = "#D4B0AB"; ROSE_D = "#BD8F89"; CREAM = "#FAF8F6"; BEIGE = "#F1EBE5"
-TERRA = "#B5654A"; OLIVE = "#6E7a56"; TAUPE = "#78716C"
+TERRA = "#7B1E22"; OLIVE = "#6B7340"  # lali maroon + olive, from the garment borders; TAUPE = "#78716C"
 
 
 def qr(url, color=INK):
@@ -236,7 +236,7 @@ def price_card(title, rows):
 
 prices = page(210, 297, f"""
 <div class="page grid">
-  {price_card("Price list", ["Lali Set", "Choli top", "Trousers", "Scarf", "", ""])}
+  {price_card("Make it a set", ["Lali Set · Gunyo + Lali Skirt  £50", "Rekha Set · Top + Pants  £45", "", ""])}
   {price_card("Pop-up offer", ["", "", "", ""])}
   {price_card("Sizing", ["Relaxed, artisanal fit", "Between sizes? Size up", "Try-on welcome", "Just ask us ♡"])}
   {price_card("We accept", ["Card &amp; contactless", "Cash", "", ""])}
@@ -294,6 +294,101 @@ poster = page(210, 297, f"""
 """)
 
 
+# ---------- real catalogue from sutine.com (assets/products.json, photos in assets/products/) ----------
+import json
+PRODUCTS = {p["id"]: p for p in json.loads((ROOT / "assets" / "products.json").read_text())}
+CATS = [  # (heading, [(id, display name, short line)])
+    ("Tops &amp; dresses", [(2, "Gunyo", "Traditional wrap top"), (7, "Rekha Top", "Striped sleeveless top"),
+                       (9, "Shanti", "Mandala-print top"), (5, "Gurash", "Light, softly structured")]),
+    ("Skirts &amp; trousers", [(3, "Lali Skirt", "Flowy, red or green hem"), (1, "Phulbari", "Hand-pieced patchwork skirt"),
+                          (6, "Sital Skirt", "Everyday cotton skirt"), (4, "Judi Pants", "White cotton · petite"),
+                          (8, "Rekha Pants", "Relaxed cotton · petite")]),
+    ("Bags", [(10, "Everyday Tote", "Canvas tote"), (11, "Suti Thaili", "Traditional carry bag")]),
+]
+def purl(pid):
+    return f"https://sutine.com/product/{pid}?utm_source=popup&utm_medium=qr&utm_campaign=stall-nov26"
+def img(pid):
+    return (ROOT / "assets" / "products" / f"{pid}.jpg").as_uri()
+
+# 08. PRICE BOARD A4 — real prices, stand it on an easel / frame it
+rows = ""
+for head, items in CATS:
+    rows += f'<p class="caps cat">{head}</p>'
+    rows += "".join(f'<div class="it"><span class="n">{n}</span><span class="d">{d}</span><b></b>'
+                    f'<span class="p">{PRODUCTS[i]["price"].replace(".00", "")}</span></div>' for i, n, d in items)
+board = page(210, 297, f"""
+<div class="page">
+  {dhaka()}
+  {wordmark()}
+  <p class="caps k">Price list</p>
+  <div class="list">{rows}
+    <p class="caps cat">Sets</p>
+    <div class="it"><span class="n">Lali Set</span><span class="d">Gunyo + Lali Skirt</span><b></b><span class="p">£50</span></div>
+    <div class="it"><span class="n">Rekha Set</span><span class="d">Top + Pants</span><b></b><span class="p">£45</span></div>
+  </div>
+  <div style="flex:1"></div>
+  <p class="foot">100% cotton (suti) · handcrafted in Nepal · card, contactless &amp; cash welcome</p>
+  {dhaka()}
+</div>""", """
+.dhaka { height: 8mm; }
+.wm { margin-top: 13mm; } .wm-main { font-size: 19mm; } .wm-by { font-size: 9mm; margin-top: 1mm; }
+.k { font-size: 4mm; margin-top: 6mm; letter-spacing: .4em; }
+.list { width: 150mm; margin-top: 4mm; }
+.cat { font-size: 3.4mm; color: #7B1E22; margin: 6mm 0 1.5mm; }
+.it { display: flex; align-items: baseline; gap: 2.5mm; height: 8.6mm; }
+.n { font-family: 'Playfair Display'; font-size: 5.6mm; white-space: nowrap; }
+.d { font-style: italic; font-size: 4mm; color: #78716C; white-space: nowrap; }
+.it b { flex: 1; border-bottom: .3mm dotted #78716C; }
+.p { font-family: 'Playfair Display'; font-size: 5.6mm; }
+.foot { font-style: italic; font-size: 3.8mm; color: #78716C; margin-bottom: 6mm; }
+""")
+
+# 09. HANG TAGS 50 x 90 mm — 12 per A4 (11 products + 1 blank). Punch the circle, tie with twine.
+def tag(i=None, n="", d=""):
+    q = f'<div class="q">{qr(purl(i))}</div><p class="sc">scan to shop online</p>' if i else '<div class="q blank"></div>'
+    pr = PRODUCTS[i]["price"].replace(".00", "") if i else "£"
+    return (f'<div class="tag"><div class="hole"></div><div class="wm"><div class="wm-main">SUT<i>ine</i></div></div>'
+            f'<div class="rl"></div><p class="n">{n or "&nbsp;"}</p><p class="d">{d or "&nbsp;"}</p>'
+            f'<p class="p">{pr}</p>{q}<p class="caps m">100% cotton · Nepal</p></div>')
+all_items = [it for _, items in CATS for it in items]
+tags = page(210, 297, '<div class="page tsheet">' + "".join(tag(*it) for it in all_items) + tag() + "</div>", """
+.tsheet { display: grid; grid-template-columns: repeat(4, 50mm); grid-template-rows: repeat(3, 90mm); justify-content: center; align-content: center; height: 297mm; }
+.tag { border: .15mm dashed #D4B0AB; display: flex; flex-direction: column; align-items: center; padding: 4mm 4mm 3mm; }
+.hole { width: 4.5mm; height: 4.5mm; border: .3mm solid #78716C; border-radius: 50%; }
+.tag .wm { margin-top: 4mm; } .tag .wm-main { font-size: 8mm; }
+.rl { width: 10mm; height: .25mm; background: #7B1E22; margin: 3mm 0 3.5mm; }
+.tag .n { font-family: 'Playfair Display'; font-size: 5.4mm; text-align: center; }
+.tag .d { font-style: italic; font-size: 3.1mm; color: #78716C; text-align: center; margin-top: .5mm; }
+.tag .p { font-family: 'Playfair Display'; font-size: 7.5mm; margin-top: 2.5mm; }
+.tag .q { width: 19mm; height: 19mm; margin-top: 3mm; } .tag .q.blank { border: .2mm dashed #D4B0AB; }
+.tag .sc { font-size: 2.5mm; font-style: italic; margin-top: 1mm; }
+.tag .m { font-size: 1.9mm; margin-top: auto; }
+""")
+
+# 10. LOOKBOOK A4 — the whole collection with photos + prices (table display, or post on IG)
+tiles = "".join(f'<div class="ti"><div class="ph" style="background-image:url({img(i)})"></div>'
+                f'<p><span>{n}</span><span>{PRODUCTS[i]["price"].replace(".00", "")}</span></p></div>' for i, n, _ in all_items)
+look = page(210, 297, f"""
+<div class="page">
+  <div class="hd">{wordmark()}<p class="caps">The first collection</p></div>
+  <div class="grid">{tiles}
+    <div class="ti qrt"><div class="q">{qr(WEB[0])}</div><p class="c">Shop online<br><b>sutine.com</b></p></div>
+  </div>
+  <p class="foot">Breathable cotton pieces blending culture &amp; comfort — handcrafted in Nepal</p>
+</div>""", """
+.page { padding: 10mm 12mm 0; }
+.hd { display: flex; align-items: flex-end; justify-content: space-between; width: 100%; border-bottom: .3mm solid #292524; padding-bottom: 3mm; }
+.hd .wm { text-align: left; } .wm-main { font-size: 13mm; } .wm-by { font-size: 6mm; }
+.hd .caps { font-size: 3.2mm; color: #7B1E22; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5mm; width: 100%; margin-top: 5mm; }
+.ti .ph { height: 64mm; background-size: cover; background-position: center 20%; }
+.ti p { display: flex; justify-content: space-between; font-size: 3.6mm; margin-top: 1.2mm; }
+.ti p span:first-child { font-family: 'Playfair Display'; }
+.qrt { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #F1EBE5; height: 64mm; }
+.qrt .q { width: 28mm; height: 28mm; } .qrt .c { display: block; text-align: center; font-size: 3.6mm; margin-top: 2.5mm; }
+.foot { font-style: italic; font-size: 3.8mm; color: #78716C; margin-top: 4mm; }
+""")
+
 PIECES = {
     "01-hanging-banner-80x180cm": (banner, 800, 1800),
     "02-table-runner-60x150cm": (runner, 600, 1500),
@@ -302,6 +397,9 @@ PIECES = {
     "05-price-cards-4xA6-on-A4": (prices, 210, 297),
     "06-thankyou-cards-10up-A4": (cards, 210, 297),
     "07-this-weekend-poster-A4": (poster, 210, 297),
+    "08-price-board-A4": (board, 210, 297),
+    "09-hang-tags-12up-A4": (tags, 210, 297),
+    "10-lookbook-A4": (look, 210, 297),
 }
 
 if __name__ == "__main__":
