@@ -1,44 +1,25 @@
-# Sutíne by Yojana — Pop-up Stall Kit (Fri 6 & Sat 7 Nov)
+# Sutíne by Yojana: Pop-up Stall Kit · Fri 6 & Sat 7 Nov
 
-Brand: cream `#FAF8F6`, dusty rose `#D4B0AB`/`#BD8F89`, charcoal `#292524`, lali maroon `#7B1E22` + olive `#6B7340` (taken from the garment borders).
-Fonts: Playfair Display + Crimson Text (the same ones sutine.com uses).
+**Start with `print/00-PRINT-GUIDE.pdf`.** It has a mock-up of the stall, every item with its size, material and quantity, notes for the printer, and a packing list.
 
-## Files (`print/` = send these to the printer)
-| # | Piece | Size | How to print |
-|---|-------|------|--------------|
-| 01 | Hanging banner | 80 × 180 cm | Print on natural linen/canvas fabric; hem the top for a pole or tie it to a wooden frame |
-| 02 | Table runner | 60 × 150 cm | Fabric. Top 60 cm lies on the table; artwork sits on the 90 cm front drop (the fold line is marked) |
-| 03 | Follow Us card | A5 | 300gsm matte card, then clip it into a wooden block stand |
-| 04 | Brand story card | A5 | 300gsm matte card, displayed next to Follow Us |
-| 05 | Sets, offer, sizing & payment cards | 4 × A6 on one A4 sheet | Cut along the dashed lines, fill in with a fine black pen, hang from the rail with clips |
-| 06 | Thank-you / QR cards | 10 × 85×55 mm on A4 | 350gsm. Print about 10 sheets (100 cards) and put one in every bag |
-| 07 | "This weekend" poster | A4 | Post it on socials Thu & Fri, and use it on the venue board |
-| 08 | Price board (real sutine.com prices) | A4 | Frame it or stand it on an easel |
-| 09 | Hang tags, one per product, each with a QR code to that product's page | 12 × 50×90 mm on A4 | 350gsm. Punch the circle and tie on with twine. The 12th tag is blank. Print 3–4 sheets |
-| 10 | Lookbook (photos + prices + shop QR) | A4 | Put it on the table, and post it on IG |
+**Design idea:** each piece is dressed like the clothes. It has a cream cotton ground, a maroon or olive **hem band** (from the Lali skirt), and stitched **Phulbari flower appliqués** (from the patchwork skirt). No prices are printed anywhere.
+Colours: cream `#F7F3EC` · maroon `#7A1F26` · olive `#5F6B3A` · ink `#2A2523`. Fonts: Playfair Display, Cormorant Garamond, Karla.
 
-Products and prices were pulled from the sutine.com catalogue (`assets/products.json`, photos in `assets/products/`).
-If a price changes, edit `products.json` and re-run the build.
+| | Piece | Size | Print on | Qty |
+|-|-------|------|----------|-----|
+| A1 | Hanging banner | 80 × 180 cm | cotton canvas / linen-look fabric | 1 |
+| A2 | Table-front / tent header banner | 150 × 50 cm | same fabric | 1 |
+| A3 | Table runner | 50 × 140 cm | heavy cotton canvas | 1 |
+| B1 | Follow us card (Instagram, TikTok, website QR codes) | A5 | 350 gsm matte | 2 |
+| B2 | Our story card | A5 | 350 gsm matte | 1 |
+| B3 | Table signs: Try it on · 100% suti · Handcrafted in Nepal · Card & cash | 4 × A6 on A4 | 350 gsm matte | 1 sheet |
+| B4 | Hang tags, one per product, QR to its page (no prices) | 50 × 90 mm, 12 on A4 | 400 gsm uncoated | 3–4 sheets |
+| B5 | Thank-you cards | 85 × 55 mm, 10 on A4 | 350 gsm matte | 10 sheets |
+| B6 | Round stickers | Ø 50 mm, 15 on A4 | matte sticker paper, kiss-cut | 4 sheets |
+| C1 | This-weekend poster | A4 | 170 gsm | 2 |
+| C2 / C3 | Instagram post / story | 1080×1350 / 1080×1920 px | `digital/` | — |
 
-`qr/` holds the standalone QR codes (SVG + PNG):
-- Instagram → https://www.instagram.com/sutine_by_yojana/
-- TikTok → https://www.tiktok.com/@sutine.by.yojana
-- Website → https://sutine.com/?utm_source=popup&utm_medium=qr&utm_campaign=stall-nov26 (stall scans show up separately in your analytics)
+`qr/` has the standalone QR codes. Scan every one on the proof before the full run.
 
-Before printing, scan every QR with a phone.
-
-## Editing
-Open `build.py` and set `EVENT["venue"]` / `EVENT["hours"]`. The poster shows a write-in line while these are blank.
-Then run `pip install segno playwright && python3 build.py`.
-
-## Stall checklist
-- [ ] Wooden frame or pole for the banner, plus ties or clips
-- [ ] Base tablecloth (warm beige or olive green under the cream runner looks great)
-- [ ] Clothing rail, wooden hangers, S-hooks and bulldog clips for the price cards
-- [ ] 2 wooden block stands for the A5 cards
-- [ ] Mirror, and a curtain or try-on corner
-- [ ] Card reader (charged), cash float, and the "Sales Receipt" Google Form open on a phone
-- [ ] Paper bags, tissue, thank-you cards
-- [ ] Phone charger and power bank, tape, scissors, a pen and a marker
-- [ ] Notebook or sign-up sheet for emails (new-arrival list)
-- [ ] Post on IG / TikTok Thursday night, Friday morning and Saturday morning; share Stories from the stall
+**Editing:** set the venue and hours in `EVENT` at the top of `build.py`, then run
+`pip install segno playwright pillow && python3 build.py`.

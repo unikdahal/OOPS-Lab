@@ -1,0 +1,99 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Karla:wght@400;500&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #F7F3EC; color: #2A2523; font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; background: #F7F3EC; }
+.wm { text-align: center; line-height: .88; }
+.wm-main { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: .015em; }
+.wm-main i { font-style: italic; font-weight: 400; letter-spacing: 0; }
+.wm-by { font-family: 'Playfair Display', serif; font-style: italic; color: #7A1F26; }
+.caps { font-family: 'Karla', sans-serif; text-transform: uppercase; letter-spacing: .32em; font-weight: 500; }
+.it { font-style: italic; }
+.qr { display: block; width: 100%; height: 100%; }
+.garden, .choli { display: block; }
+.hem { position: absolute; left: 0; right: 0; bottom: 0; background: #7A1F26; color: #F7F3EC;
+  display: flex; align-items: center; justify-content: center; }
+.hem.olive { background: #5F6B3A; }
+.hem::before { content: ""; position: absolute; left: 0; right: 0; border-top: 1px dashed #F7F3EC; opacity: .7; }
+.trim { position: absolute; left: 0; right: 0; background: #5F6B3A; }
+.page.sheet, .page.tsheet, .page.ssheet { align-items: stretch; justify-items: stretch; }
+@page { size: 210mm 297mm; margin: 0; } .page { width: 210mm; height: 297mm; }
+.g { padding: 12mm 14mm 0; align-items: stretch; page-break-after: always; }
+.hd { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: .3mm solid #2A2523; padding-bottom: 3mm; }
+.hd .wm { text-align: left; } .hd .wm-main { font-size: 12mm; } .hd .wm-by { font-size: 5.6mm; }
+.hd .caps { font-size: 2.6mm; color: #7A1F26; text-align: right; } .hd .it { font-size: 4.4mm; text-align: right; margin-top: 1mm; }
+h2 { font-family: 'Playfair Display'; font-weight: 400; font-size: 6.2mm; margin: 5mm 0 2.5mm; }
+.mock { position: relative; height: 120mm; border-radius: 2mm; overflow: hidden; }
+.wall { position: absolute; inset: 0 0 22% 0; background: linear-gradient(#e9e2d7, #ddd3c5); }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 22%; background: linear-gradient(#c9b9a3, #b8a68e); }
+.frame { position: absolute; left: 6%; bottom: 12%; width: 17%; height: 83%; }
+.frame .fb { position: absolute; inset: -2.5mm -2mm -5mm; border: 2mm solid #b48a5c; border-bottom: none; }
+.frame img { width: 100%; height: 100%; object-fit: fill; box-shadow: 0 1mm 3mm #0003; }
+.rail { position: absolute; right: 5%; bottom: 12%; width: 30%; height: 72%; border-left: 1.2mm solid #2A2523; border-right: 1.2mm solid #2A2523; }
+.rail .bar { position: absolute; top: 0; left: 0; right: 0; height: 1.2mm; background: #2A2523; }
+.gar { position: absolute; top: 3mm; width: 10%; border-radius: 1.5mm 1.5mm .5mm .5mm; box-shadow: 0 .5mm 1.5mm #0002; }
+.table { position: absolute; left: 27%; bottom: 6%; width: 40%; height: 44%; }
+.table .top { position: absolute; top: 0; left: -2%; right: -2%; height: 5%; background: #efe9df; border-radius: 1mm; }
+.table .cloth { position: absolute; top: 5%; left: 0; right: 0; bottom: 0; background: #e8dfd2; box-shadow: inset 0 -2mm 3mm #0001; }
+.runner { position: absolute; top: 5%; left: 33%; width: 34%; bottom: 0; background-size: 100% auto; background-position: center bottom; box-shadow: 0 .5mm 2mm #0002; }
+.card { position: absolute; bottom: 99%; width: 11%; } .card img { width: 100%; display: block; box-shadow: 0 .5mm 1.5mm #0003; }
+.card::after { content: ""; display: block; height: 2.2mm; background: #c79f72; margin: 0 -8%; }
+.c1 { left: 8%; } .c2 { left: 79%; }
+.setup { font-size: 4.1mm; line-height: 1.38; padding-left: 5mm; margin-top: 5mm; } .setup li { margin-bottom: 1.8mm; }
+.setup b, .notes b { font-weight: 600; color: #7A1F26; }
+table { width: 100%; border-collapse: collapse; font-size: 3.05mm; line-height: 1.2; }
+td { padding: 1.1mm 1.4mm; border-bottom: .15mm solid #d8cfc3; vertical-align: top; }
+.th td { font-family: 'Karla'; font-size: 2.3mm; text-transform: uppercase; letter-spacing: .15em; color: #7A716B; border-bottom: .3mm solid #2A2523; }
+.sec td { font-family: 'Karla'; font-size: 2.4mm; letter-spacing: .2em; text-transform: uppercase; color: #7A1F26; padding-top: 3.5mm; border-bottom: none; }
+td:first-child { font-family: 'Playfair Display'; color: #7A1F26; width: 7mm; }
+td:nth-child(2) { font-weight: 600; width: 32mm; } td:nth-child(3) { width: 24mm; } td:nth-child(4) { width: 36mm; } td:nth-child(5) { width: 15mm; }
+.notes { font-size: 3.5mm; line-height: 1.32; padding-left: 5mm; } .notes li { margin-bottom: 1.4mm; }
+.cols { display: flex; gap: 8mm; } .cols ul { flex: 1; font-size: 3.4mm; line-height: 1.42; padding-left: 5mm; list-style: '☐  '; }
+</style></head><body>
+<div class="page g">
+  <div class="hd"><div class="wm"><div class="wm-main">SUT<i>ine</i></div><div class="wm-by">by Yojana</div></div><div><p class="caps">Pop-up stall · print guide</p><p class="it">Friday 6 &amp; Saturday 7 November</p></div></div>
+  <h2>How the stall comes together</h2>
+  
+<div class="mock">
+  <div class="wall"></div><div class="floor"></div>
+  <div class="frame"><div class="fb"></div><img src="file:///home/user/OOPS-Lab/sutine-stall/preview/A1-hanging-banner-80x180cm.png"></div>
+  <div class="rail"><div class="bar"></div>
+    <div class="gar" style="left:6%;background:#fff;height:62%"></div><div class="gar" style="left:18%;background:#7A1F26;height:38%"></div><div class="gar" style="left:30%;background:#fff;height:70%"></div><div class="gar" style="left:42%;background:#5F6B3A;height:36%"></div><div class="gar" style="left:54%;background:#fff;height:66%"></div><div class="gar" style="left:66%;background:#E9E4F0;height:58%"></div><div class="gar" style="left:78%;background:#efe9df;height:64%"></div>
+  </div>
+  <div class="table"><div class="top"></div><div class="cloth"></div>
+    <div class="runner" style="background-image:url(file:///home/user/OOPS-Lab/sutine-stall/preview/A3-table-runner-50x140cm.png)"></div>
+    <div class="card c1"><img src="file:///home/user/OOPS-Lab/sutine-stall/preview/B1-follow-us-card-A5.png"></div><div class="card c2"><img src="file:///home/user/OOPS-Lab/sutine-stall/preview/B2-our-story-card-A5.png"></div>
+    <div class="fold"></div>
+  </div>
+</div>
+  <ol class="setup">
+    <li><b>Back left:</b> A1 banner on its frame, slightly angled so it can be seen from the walkway.</li>
+    <li><b>Table:</b> plain beige or white base cloth to the floor, A3 runner on top, flowers facing the customer.
+        Use the A2 banner instead of the runner if the table is wider than 1.5 m.</li>
+    <li><b>On the table:</b> B1 Follow us + B2 Our story in wooden block stands, folded pieces in low stacks, Totes &amp; Thailis in a basket.</li>
+    <li><b>Rail:</b> on the right, wooden hangers, light to dark. B4 tag on every piece, B3 "Try it on" sign clipped to the end.</li>
+    <li><b>Bags:</b> kraft bag, cream tissue sealed with a B6 sticker, and a B5 thank-you card inside.</li>
+  </ol>
+  <div class="trim" style="bottom:9mm;height:1.4mm"></div><div class="hem" style="height:7.5mm"></div>
+</div>
+<div class="page g">
+  <h2>What to print</h2>
+  <table><tr class="th"><td></td><td>Piece</td><td>Finished size</td><td>Material</td><td>Qty</td><td>Finishing &amp; where it goes</td></tr><tr class="sec"><td colspan="6">BIG · fabric</td></tr><tr><td>A1</td><td>Hanging banner</td><td>80 × 180 cm</td><td>Cotton canvas or linen-look polyester, matte, dye-sublimation</td><td>1</td><td>Hemmed edges + 5 cm pole pocket top &amp; bottom (or 4 brass eyelets). Hang on a wooden frame or a clothing rail</td></tr><tr><td>A2</td><td>Table-front / tent header banner</td><td>150 × 50 cm</td><td>Same fabric as A1</td><td>1</td><td>Eyelets in the 4 corners. Clip it to the front table edge or the gazebo valance</td></tr><tr><td>A3</td><td>Table runner</td><td>50 × 140 cm</td><td>Heavy cotton canvas, dye-sublimation</td><td>1</td><td>Hemmed. Olive end lies at the back of the table, flowers + maroon hem hang down the front</td></tr><tr class="sec"><td colspan="6">SMALL · card &amp; paper</td></tr><tr><td>B1</td><td>Follow us card</td><td>A5</td><td>350 gsm uncoated / matte card</td><td>2</td><td>One in a wooden block stand at the front of the table, one by the till</td></tr><tr><td>B2</td><td>Our story card</td><td>A5</td><td>350 gsm uncoated / matte card</td><td>1</td><td>Next to the Follow us card</td></tr><tr><td>B3</td><td>Table signs (try-on, suti, handcrafted, card &amp; cash)</td><td>4 × A6 on A4</td><td>350 gsm matte card</td><td>1 sheet</td><td>Cut on the dashed lines. Clip to the rail, mirror and till</td></tr><tr><td>B4</td><td>Hang tags (one per product, QR to its page)</td><td>50 × 90 mm, 12 on A4</td><td>400 gsm uncoated card</td><td>3–4 sheets</td><td>Punch the circle (5 mm), tie on with jute twine. The blank 12th tag is for anything new</td></tr><tr><td>B5</td><td>Thank-you cards</td><td>85 × 55 mm, 10 on A4</td><td>350 gsm matte card</td><td>10 sheets (100)</td><td>One in every bag. The QR goes to your Instagram</td></tr><tr><td>B6</td><td>Round stickers</td><td>Ø 50 mm, 15 on A4</td><td>Matte paper sticker sheet, kiss-cut</td><td>4 sheets (60)</td><td>Seal tissue paper and kraft bags</td></tr><tr><td>C1</td><td>This-weekend poster</td><td>A4</td><td>170 gsm silk paper</td><td>2</td><td>Venue board or a shop window nearby</td></tr><tr class="sec"><td colspan="6">DIGITAL · Instagram</td></tr><tr><td>C2</td><td>Feed post</td><td>1080 × 1350 px</td><td>PNG</td><td>—</td><td>Post Thursday evening</td></tr><tr><td>C3</td><td>Story</td><td>1080 × 1920 px</td><td>PNG</td><td>—</td><td>Thursday night, Friday morning, Saturday morning. Add a link sticker to sutine.com</td></tr></table>
+  <h2>Notes for the printer</h2>
+  <ul class="notes">
+    <li>Files are vector PDFs at 100% finished size. Fabric: add 3 cm hem allowance on every side (no bleed is built in).
+        Card: print edge to edge, then trim on the dashed guides.</li>
+    <li>Colours: cream <b>#F7F3EC</b>, maroon <b>#7A1F26</b>, olive <b>#5F6B3A</b>, ink <b>#2A2523</b>. Ask for a small
+        test swatch of the fabric. Maroon goes darker on canvas.</li>
+    <li>If you print on natural or undyed linen, the cream background can be left unprinted so the fabric shows through.</li>
+    <li>Scan every QR code on the proof before the full run.</li>
+  </ul>
+  <h2>Bring on the day</h2>
+  <div class="cols"><ul>
+    <li>Banner frame or pole, cable ties, S-hooks</li><li>Clothing rail + wooden hangers</li><li>Base tablecloth (to the floor)</li>
+    <li>2 wooden block stands, bulldog clips</li><li>Mirror + changing curtain</li><li>Basket for totes &amp; thailis</li></ul><ul>
+    <li>Card reader (charged) + cash float</li><li>Kraft bags, cream tissue, twine</li><li>Sales Receipt form open on a phone</li>
+    <li>Power bank, tape, scissors, pens</li><li>Email sign-up sheet for new arrivals</li><li>Water &amp; snacks ♡</li></ul></div>
+  <div class="trim" style="bottom:9mm;height:1.4mm"></div><div class="hem" style="height:7.5mm"></div>
+</div></body></html>
