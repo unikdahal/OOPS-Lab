@@ -41,12 +41,11 @@ RUNNER = page(800, 1800, f"""
     <div class="mid">
       {wordmark()}
       <p class="caps l1">Handcrafted in Nepal</p>
-      <p class="caps l2">100% cotton &nbsp;·&nbsp; made slowly, by hand</p>
     </div>
     {spray(True)}
   </div>
   <div class="trim" style="bottom:66mm;height:7mm"></div>
-  <div class="hem" style="height:60mm"><p class="caps url">sutine.com</p></div>
+  <div class="hem" style="height:60mm"></div>
 </div>""", """
 .art { position: absolute; left: 0; right: 0; bottom: 115mm; display: flex; align-items: center; justify-content: center; gap: 6mm; }
 .spray { width: 165mm; height: 536mm; flex-shrink: 0; }
