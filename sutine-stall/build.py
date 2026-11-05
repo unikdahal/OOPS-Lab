@@ -132,6 +132,40 @@ def page(w, h, body, css=""):
 
 PX = 25.4 / 96  # 1 css px in mm, for the digital pieces
 
+
+# 01 · BIG BACKDROP BANNER 200 x 100 cm — hangs on the back wall / gazebo back, behind the table
+BACKDROP = page(2000, 1000, f"""
+<div class="page bd">
+  {garden("0 0 520 820", [("l",70,600,2.4,-50,OLIVE),("f",190,450,2.6,8,MAROON),("f",400,640,1.45,25,OLIVE),
+                          ("l",430,330,1.7,-115,OLIVE),("f",370,190,1.05,0,MAROON),("l",120,180,1.5,-140,MAROON)], "gl")}
+  <div class="mid">
+    <p class="caps top">Handcrafted in Nepal &nbsp;·&nbsp; 100% cotton</p>
+    {wordmark()}
+    <p class="it tag">Clothes that are light on your skin and easy on your mind.</p>
+  </div>
+  <div class="right">
+    {garden("-160 -60 320 120", [("l",-95,10,1,200,OLIVE),("f",-55,0,.62,10,MAROON),("f",0,-6,.9,0,OLIVE),
+                                 ("f",55,0,.62,-12,MAROON),("l",95,10,1,-20,OLIVE)], "crown")}
+    <div class="q">{qr(IG[0])}</div>
+    <p class="caps f">Follow along</p><p class="h">{IG[1]}</p>
+  </div>
+  <div class="trim" style="bottom:118mm;height:10mm"></div>
+  <div class="hem" style="height:112mm"><p class="caps hh">{IG[1]} &nbsp;&nbsp;·&nbsp;&nbsp; sutine.com &nbsp;&nbsp;·&nbsp;&nbsp; {TT[1]}</p></div>
+</div>""", """
+.bd { flex-direction: row; align-items: flex-start; }
+.gl { width: 520mm; height: 820mm; flex-shrink: 0; margin-top: 10mm; }
+.mid { flex: 1; display: flex; flex-direction: column; align-items: center; margin-top: 150mm; }
+.top { font-size: 26mm; color: #7A1F26; }
+.wm { margin-top: 60mm; } .wm-main { font-size: 250mm; } .wm-by { font-size: 120mm; margin-top: 12mm; }
+.tag { font-size: 46mm; margin-top: 70mm; text-align: center; }
+.right { width: 420mm; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; margin-top: 150mm; margin-right: 50mm; }
+.crown { width: 300mm; height: 112mm; }
+.right .q { width: 250mm; height: 250mm; margin-top: 50mm; background: #F7F3EC; }
+.f { font-size: 18mm; color: #7A716B; margin-top: 22mm; } .h { font-family: 'Playfair Display'; font-size: 40mm; margin-top: 8mm; }
+.hh { font-size: 30mm; letter-spacing: .3em; text-transform: none; position: relative; }
+.hem::before { top: 12mm; border-top: 1.4mm dashed #F7F3EC; }
+""")
+
 # ================================================================== BIG (fabric)
 # A1 · Hanging banner 80 x 180 cm
 A1 = page(800, 1800, f"""
@@ -163,25 +197,6 @@ A1 = page(800, 1800, f"""
 .hem::before { top: 14mm; border-top: 1.6mm dashed #F7F3EC; }
 """)
 
-# A2 · Table-front / tent header banner 150 x 50 cm (landscape)
-A2 = page(1500, 500, f"""
-<div class="page row">
-  {garden("0 0 340 420", [("l",60,330,1.8,-60,OLIVE),("f",120,220,1.85,10,MAROON),("f",255,330,1.05,20,OLIVE),
-                          ("l",280,150,1.2,-110,OLIVE),("f",250,95,.7,0,MAROON)], "gl")}
-  <div class="mid">{wordmark()}<p class="caps sub">Handcrafted in Nepal &nbsp;·&nbsp; 100% cotton</p></div>
-  {garden("0 0 340 420", [("l",280,330,1.8,-120,OLIVE),("f",220,220,1.85,-10,OLIVE),("f",85,330,1.05,-20,MAROON),
-                          ("l",60,150,1.2,-70,OLIVE),("f",90,95,.7,0,MAROON)], "gr")}
-  <div class="trim" style="bottom:66mm;height:6mm"></div>
-  <div class="hem" style="height:62mm"><p class="caps h">{IG[1]} &nbsp;·&nbsp; sutine.com</p></div>
-</div>""", """
-.row { flex-direction: row; align-items: flex-start; justify-content: space-between; }
-.gl, .gr { width: 340mm; height: 420mm; margin-top: 0; }
-.mid { display: flex; flex-direction: column; align-items: center; margin-top: 70mm; }
-.wm-main { font-size: 150mm; } .wm-by { font-size: 72mm; margin-top: 6mm; }
-.sub { font-size: 18mm; margin-top: 32mm; color: #7A1F26; }
-.h { font-size: 20mm; letter-spacing: .3em; text-transform: none; position: relative; }
-.hem::before { top: 7mm; border-top: 1mm dashed #F7F3EC; }
-""")
 
 # A3 · Table runner 50 x 140 cm: back 60 cm lies on the table, front 80 cm hangs down
 A3 = page(500, 1400, f"""
@@ -256,138 +271,19 @@ p { font-size: 4.5mm; line-height: 1.42; text-align: center; margin-bottom: 3.2m
 .sig { font-family: 'Playfair Display'; font-size: 5.4mm; color: #7A1F26; margin-top: 3mm; }
 """)
 
-# B3 · Four small table signs A6 (on one A4 sheet)
-def sign(kicker, title, line, flower_color):
-    return (f'<div class="sg">{garden("-60 -60 120 120", [("f",0,0,1,0,flower_color)], "sf")}'
-            f'<p class="caps kk">{kicker}</p><p class="tt">{title}</p><p class="it ll">{line}</p>'
-            f'<div class="tr"></div><div class="hm"></div></div>')
-B3 = page(210, 297, '<div class="page sheet">' + "".join([
-    sign("Please", "Try&nbsp;it <i>on</i>", "Our mirror &amp; changing corner are all yours.", MAROON),
-    sign("The fabric", "100% <i>suti</i>", "Soft, breathable cotton, made to be lived in.", OLIVE),
-    sign("Made by hand", "Handcrafted <i>in Nepal</i>", "Each piece is made slowly, with love and patience.", OLIVE),
-    sign("Easy checkout", "Card &amp; <i>cash</i>", "Contactless welcome. Shop anytime at sutine.com", MAROON),
-]) + "</div>", """
-.sheet { display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; }
-.sg { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 0 12mm 10mm; outline: .15mm dashed #C99C95; }
-.sf { width: 30mm; height: 30mm; margin-bottom: 8mm; }
-.kk { font-size: 2.6mm; color: #7A716B; } .tt { font-family: 'Playfair Display'; font-size: 11mm; line-height: 1.05; margin-top: 3mm; }
-.tt i { color: #7A1F26; } .ll { font-size: 4.6mm; margin-top: 5mm; line-height: 1.35; color: #4a4340; }
-.tr { position: absolute; left: 0; right: 0; bottom: 8mm; height: 1.2mm; background: #5F6B3A; }
-.hm { position: absolute; left: 0; right: 0; bottom: 0; height: 6.5mm; background: #7A1F26; }
-""")
-
-# B4 · Hang tags 50 x 90 mm, 12 per A4 (no prices; the QR opens the product page)
-def tag(pid=None, name="", line=""):
-    q = (f'<div class="q">{qr(f"https://sutine.com/product/{pid}?{UTM}")}</div>'
-         f'<p class="sc">scan for sizes &amp; details</p>') if pid else '<div class="q"></div><p class="sc">&nbsp;</p>'
-    return (f'<div class="tg"><div class="hole"></div>{wordmark(False)}<div class="rl"></div>'
-            f'<p class="n">{name or "&nbsp;"}</p><p class="d it">{line or "&nbsp;"}</p>{q}'
-            f'<p class="caps m">100% cotton · Nepal</p><div class="hm"></div></div>')
-B4 = page(210, 297, '<div class="page tsheet">' + "".join(tag(*p) for p in PRODUCTS) + tag() + "</div>", """
-.tsheet { display: grid; grid-template-columns: repeat(4, 50mm); grid-template-rows: repeat(3, 90mm);
-          justify-content: center; align-content: center; height: 297mm; }
-.tg { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 4mm 4mm 0; outline: .15mm dashed #C99C95; }
-.hole { width: 4.5mm; height: 4.5mm; border: .3mm solid #7A716B; border-radius: 50%; }
-.tg .wm { margin-top: 5mm; } .tg .wm-main { font-size: 8.4mm; }
-.rl { width: 8mm; height: .3mm; background: #7A1F26; margin: 4mm 0; }
-.n { font-family: 'Playfair Display'; font-size: 5.4mm; text-align: center; line-height: 1.1; }
-.d { font-size: 3.4mm; color: #7A716B; text-align: center; margin-top: 1mm; }
-.q { width: 20mm; height: 20mm; margin-top: 6mm; } .sc { font-size: 2.6mm; font-style: italic; margin-top: 1.2mm; }
-.m { font-size: 1.9mm; position: absolute; bottom: 8mm; }
-.hm { position: absolute; left: 0; right: 0; bottom: 0; height: 5mm; background: #7A1F26; }
-""")
-
-# B5 · Thank-you cards 85 x 55 mm, 10 per A4
-card = f"""<div class="bc"><div class="l">{garden("-60 -60 120 120", [("f",0,0,1,0,CREAM)], "cf")}
-<p class="caps">Thank you</p></div><div class="r">{wordmark()}<p class="it t">Thank you for choosing slow,<br>handmade clothing.</p>
-<div class="b"><div class="q">{qr(IG[0])}</div><p>Tag us in your look<br><b>{IG[1]}</b></p></div></div></div>"""
-B5 = page(210, 297, f'<div class="page sheet">{card * 10}</div>', f"""
-.sheet {{ display: grid; grid-template-columns: 85mm 85mm; grid-auto-rows: 55mm; padding: 11mm 20mm; align-content: start; justify-content: center; }}
-.bc {{ display: flex; outline: .15mm dashed {ROSE}; overflow: hidden; }}
-.l {{ width: 26mm; background: {MAROON}; color: {CREAM}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4mm; }}
-.l .cf {{ width: 15mm; height: 15mm; }} .l .caps {{ font-size: 1.9mm; letter-spacing: .25em; }}
-.r {{ flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3mm; }}
-.r .wm-main {{ font-size: 7.6mm; }} .r .wm-by {{ font-size: 3.6mm; }}
-.t {{ font-size: 3.2mm; text-align: center; line-height: 1.25; margin-top: 2.2mm; }}
-.b {{ display: flex; align-items: center; gap: 2.5mm; margin-top: 2.6mm; }}
-.b .q {{ width: 12mm; height: 12mm; }} .b p {{ font-size: 2.5mm; line-height: 1.3; }}
-""")
-
-# B6 · Round stickers 50 mm, 15 per A4 (seal tissue paper / bags)
-def sticker(i, bg, fg, fl):
-    return f"""<div class="st" style="background:{bg};color:{fg}"><svg viewBox="0 0 100 100" class="arc">
-<defs><path id="c{i}" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs>
-<text font-family="Karla" font-size="6.4" letter-spacing="2.6" fill="{fg}" font-weight="500">
-<textPath href="#c{i}" startOffset="2%">HANDCRAFTED IN NEPAL · 100% COTTON ·</textPath></text></svg>
-<div class="in">{garden("-60 -60 120 120", [("f",0,0,1,0,fl)], "sf")}<div class="wm-main">SUT<i>ine</i></div></div></div>"""
-B6 = page(210, 297, '<div class="page ssheet">' +
-          "".join(sticker(i, *((CREAM, MAROON, OLIVE) if i % 2 else (MAROON, CREAM, CREAM))) for i in range(15)) + "</div>", """
-.ssheet { display: grid; grid-template-columns: repeat(3, 50mm); grid-auto-rows: 50mm; gap: 6mm 12mm; justify-content: center; align-content: center; height: 297mm; }
-.st { position: relative; border-radius: 50%; outline: .15mm dashed #C99C95; }
-.arc { position: absolute; inset: 0; width: 100%; height: 100%; }
-.in { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.st .sf { width: 11mm; height: 11mm; margin-bottom: 1.5mm; } .st .wm-main { font-size: 7.4mm; }
-""")
-
-# ================================================================== EVENT poster + digital
-def event_body():
-    v = f'<p class="v">{EVENT["venue"]}</p>' if EVENT["venue"] else ""
-    h = f'<p class="v">{EVENT["hours"]}</p>' if EVENT["hours"] else ""
-    return f"""<div class="page">
-  {garden("-160 -60 320 120", [("l",-95,10,1,200,OLIVE),("f",-55,0,.62,10,MAROON),("f",0,-6,.9,0,OLIVE),
-                               ("f",55,0,.62,-12,MAROON),("l",95,10,1,-20,OLIVE)], "crown")}
-  <p class="caps k">Pop-up stall</p>
-  {wordmark()}
-  <div class="art">{choli()}</div>
-  <p class="caps k2">Come say hello</p>
-  <p class="d">{EVENT['days']}</p>{v}{h}
-  <p class="it x">Try on the first collection, handcrafted in Nepal</p>
-  <div style="flex:1"></div>
-  <p class="caps hd">{IG[1]}</p>
-  {garden("0 0 800 300", [("l",40,230,2.2,-40,OLIVE),("f",150,170,2.0,8,MAROON),("f",330,232,1.15,25,OLIVE),
-                          ("l",420,250,1.6,-150,MAROON),("f",590,150,1.7,-10,OLIVE),("f",730,248,1.0,15,MAROON),
-                          ("l",470,170,1.3,-60,OLIVE)], "bed")}
-  <div class="trim" style="bottom:calc(var(--u)*11);height:calc(var(--u)*1.4)"></div>
-  <div class="hem" style="height:calc(var(--u)*9.5)"></div>
-</div>"""
-EV_CSS = """
-.page { --u: VAR; }
-.crown { width: calc(var(--u)*80); height: calc(var(--u)*30); margin-top: calc(var(--u)*14); }
-.k { font-size: calc(var(--u)*3.6); margin-top: calc(var(--u)*5); color: #7A1F26; }
-.wm { margin-top: calc(var(--u)*5); } .wm-main { font-size: calc(var(--u)*28); } .wm-by { font-size: calc(var(--u)*13.5); margin-top: calc(var(--u)*1.5); }
-.art .choli { width: calc(var(--u)*56); height: calc(var(--u)*56); margin-top: calc(var(--u)*8); }
-.k2 { font-size: calc(var(--u)*3.6); margin-top: calc(var(--u)*6); color: #7A716B; }
-.d { font-family: 'Playfair Display'; font-size: calc(var(--u)*10); margin-top: calc(var(--u)*3); text-align: center; }
-.v { font-size: calc(var(--u)*6.5); margin-top: calc(var(--u)*1.5); }
-.x { font-size: calc(var(--u)*5.4); margin-top: calc(var(--u)*5); color: #4a4340; }
-.hd { font-size: calc(var(--u)*3.6); letter-spacing: .2em; text-transform: none; margin-bottom: calc(var(--u)*62); }
-.bed { position: absolute; left: 0; width: 100%; bottom: calc(var(--u)*8); height: calc(var(--u)*79); }
-.hem::before { top: calc(var(--u)*1.6); }
-"""
-C1 = page(210, 297, event_body(), EV_CSS.replace("VAR", "1mm"))                       # A4 poster
-C2 = page(1080 * PX, 1350 * PX, event_body(), EV_CSS.replace("VAR", "1.24mm") +        # IG post 4:5
-          ".crown{margin-top:calc(var(--u)*9)} .art .choli{width:calc(var(--u)*44);height:calc(var(--u)*44)}")
-C3 = page(1080 * PX, 1920 * PX, event_body(), EV_CSS.replace("VAR", "1.36mm") +        # IG story 9:16
-          ".crown{margin-top:calc(var(--u)*40)} .art .choli{width:calc(var(--u)*70);height:calc(var(--u)*70)} .hd{margin-bottom:calc(var(--u)*90)}")
 
 PRINT = {
-    "A1-hanging-banner-80x180cm": (A1, 800, 1800),
-    "A2-table-front-banner-150x50cm": (A2, 1500, 500),
-    "A3-table-runner-50x140cm": (A3, 500, 1400),
-    "B1-follow-us-card-A5": (B1, 148, 210),
-    "B2-our-story-card-A5": (B2, 148, 210),
-    "B3-table-signs-4xA6-on-A4": (B3, 210, 297),
-    "B4-hang-tags-12up-A4": (B4, 210, 297),
-    "B5-thank-you-cards-10up-A4": (B5, 210, 297),
-    "B6-stickers-50mm-15up-A4": (B6, 210, 297),
-    "C1-weekend-poster-A4": (C1, 210, 297),
+    "01-big-backdrop-banner-200x100cm": (BACKDROP, 2000, 1000),
+    "02-hanging-banner-80x180cm": (A1, 800, 1800),
+    "03-table-runner-50x140cm": (A3, 500, 1400),
+    "04-follow-us-card-A5": (B1, 148, 210),
+    "05-our-story-card-A5": (B2, 148, 210),
 }
-DIGITAL = {"C2-instagram-post-1080x1350": (C2, 1080, 1350), "C3-instagram-story-1080x1920": (C3, 1080, 1920)}
+DIGITAL = {}
 
 
 def render():
-    for d in ("html", "print", "preview", "digital", "qr"):
+    for d in ("html", "print", "preview", "qr"):
         shutil.rmtree(ROOT / d, ignore_errors=True); (ROOT / d).mkdir()
     for key, (url, _) in {"instagram": IG, "tiktok": TT, "website": WEB}.items():
         segno.make(url, error="q").save(ROOT / "qr" / f"{key}.svg", scale=10, border=2, dark=INK)
@@ -412,127 +308,120 @@ def render():
         im = Image.open(png); im.thumbnail((1400, 1400)); im.save(png)
 
 
-if __name__ == "__main__":
-    render()
-    print("done")
-
-
-# ================================================================== PRINT GUIDE (2 x A4) — rendered after the pieces
+# ================================================================== PRINT GUIDE (2 x A4)
 SPECS = [
-    ("BIG · fabric", None),
-    ("A1", "Hanging banner", "80 × 180 cm", "Cotton canvas or linen-look polyester, matte, dye-sublimation", "1",
-     "Hemmed edges + 5 cm pole pocket top &amp; bottom (or 4 brass eyelets). Hang on a wooden frame or a clothing rail"),
-    ("A2", "Table-front / tent header banner", "150 × 50 cm", "Same fabric as A1", "1",
-     "Eyelets in the 4 corners. Clip it to the front table edge or the gazebo valance"),
-    ("A3", "Table runner", "50 × 140 cm", "Heavy cotton canvas, dye-sublimation", "1",
-     "Hemmed. Olive end lies at the back of the table, flowers + maroon hem hang down the front"),
-    ("SMALL · card &amp; paper", None),
-    ("B1", "Follow us card", "A5", "350 gsm uncoated / matte card", "2",
-     "One in a wooden block stand at the front of the table, one by the till"),
-    ("B2", "Our story card", "A5", "350 gsm uncoated / matte card", "1", "Next to the Follow us card"),
-    ("B3", "Table signs (try-on, suti, handcrafted, card &amp; cash)", "4 × A6 on A4", "350 gsm matte card", "1 sheet",
-     "Cut on the dashed lines. Clip to the rail, mirror and till"),
-    ("B4", "Hang tags (one per product, QR to its page)", "50 × 90 mm, 12 on A4", "400 gsm uncoated card", "3–4 sheets",
-     "Punch the circle (5 mm), tie on with jute twine. The blank 12th tag is for anything new"),
-    ("B5", "Thank-you cards", "85 × 55 mm, 10 on A4", "350 gsm matte card", "10 sheets (100)",
-     "One in every bag. The QR goes to your Instagram"),
-    ("B6", "Round stickers", "Ø 50 mm, 15 on A4", "Matte paper sticker sheet, kiss-cut", "4 sheets (60)",
-     "Seal tissue paper and kraft bags"),
-    ("C1", "This-weekend poster", "A4", "170 gsm silk paper", "2", "Venue board or a shop window nearby"),
-    ("DIGITAL · Instagram", None),
-    ("C2", "Feed post", "1080 × 1350 px", "PNG", "—", "Post Thursday evening"),
-    ("C3", "Story", "1080 × 1920 px", "PNG", "—", "Thursday night, Friday morning, Saturday morning. Add a link sticker to sutine.com"),
+    ("01", "Big backdrop banner", "200 × 100 cm", "Wrinkle-free polyester fabric (or cotton canvas), matte, dye-sublimation",
+     "1", "Hemmed, brass eyelets every 50 cm along the top + all corners. Hang on the back wall or gazebo back with "
+          "cable ties or bungees, with the bottom edge just above table height."),
+    ("02", "Hanging banner", "80 × 180 cm", "Cotton canvas or linen-look fabric, matte, dye-sublimation", "1",
+     "Hemmed, 5 cm pole pocket top &amp; bottom (or 4 eyelets). Hang on a wooden frame or from the rail, beside the table."),
+    ("03", "Table runner", "50 × 140 cm", "Heavy cotton canvas, dye-sublimation", "1",
+     "Hemmed edges. Olive end lies at the back of the table; flowers + maroon hem hang down the front."),
+    ("04", "Follow along card", "A5 (148 × 210 mm)", "350 gsm matte or uncoated card", "2",
+     "One in a wooden block stand at the front of the table, one by the card reader."),
+    ("05", "Our story card", "A5 (148 × 210 mm)", "350 gsm matte or uncoated card", "1", "Block stand, next to the Follow along card."),
+]
+QRS = [
+    ("01 Backdrop · 02 Hanging banner · 04 card", "Instagram", "instagram.com/sutine_by_yojana"),
+    ("04 Follow along card", "TikTok", "tiktok.com/@sutine.by.yojana"),
+    ("04 Follow along card", "Shop online", "sutine.com"),
 ]
 
 
 def guide_html():
     pv = lambda n: (ROOT / "preview" / f"{n}.png").as_uri()
-    rows = ""
-    for r in SPECS:
-        if r[1] is None:
-            rows += f'<tr class="sec"><td colspan="6">{r[0]}</td></tr>'
-        else:
-            rows += "<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>"
+    rows = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in SPECS)
+    qrows = "".join(f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td class='ok'>✓ tested</td></tr>" for a, b, c in QRS)
+    garments = "".join(f'<div class="gar" style="left:{x}%;background:{c};height:{h}%"></div>' for x, c, h in
+                       [(5,'#fff',62),(19,'#7A1F26',38),(33,'#fff',70),(47,'#5F6B3A',36),(61,'#fff',66),(75,'#E6E1EE',58)])
     mock = f"""
 <div class="mock">
   <div class="wall"></div><div class="floor"></div>
-  <div class="frame"><div class="fb"></div><img src="{pv('A1-hanging-banner-80x180cm')}"></div>
-  <div class="rail"><div class="bar"></div>
-    {''.join(f'<div class="gar" style="left:{x}%;background:{c};height:{h}%"></div>' for x, c, h in
-             [(6,'#fff',62),(18,'#7A1F26',38),(30,'#fff',70),(42,'#5F6B3A',36),(54,'#fff',66),(66,'#E9E4F0',58),(78,'#efe9df',64)])}
-  </div>
+  <div class="bdrop"><img src="{pv('01-big-backdrop-banner-200x100cm')}"></div>
+  <div class="frame"><div class="fb"></div><img src="{pv('02-hanging-banner-80x180cm')}"></div>
+  <div class="rail"><div class="bar"></div>{garments}</div>
   <div class="table"><div class="top"></div><div class="cloth"></div>
-    <div class="runner" style="background-image:url({pv('A3-table-runner-50x140cm')})"></div>
-    <div class="card c1"><img src="{pv('B1-follow-us-card-A5')}"></div><div class="card c2"><img src="{pv('B2-our-story-card-A5')}"></div>
-    <div class="fold"></div>
+    <div class="runner" style="background-image:url({pv('03-table-runner-50x140cm')})"></div>
+    <div class="card c1"><img src="{pv('04-follow-us-card-A5')}"></div><div class="card c2"><img src="{pv('05-our-story-card-A5')}"></div>
   </div>
 </div>"""
+    thumbs = "".join(f'<div class="th"><img src="{pv(n)}"><p><b>{n[:2]}</b> {lbl}</p></div>' for n, lbl in [
+        ("01-big-backdrop-banner-200x100cm", "Backdrop 200×100 cm"), ("02-hanging-banner-80x180cm", "Hanging 80×180 cm"),
+        ("03-table-runner-50x140cm", "Runner 50×140 cm"), ("04-follow-us-card-A5", "Follow along A5"),
+        ("05-our-story-card-A5", "Our story A5")])
     return page(210, 297, f"""
 <div class="page g">
   <div class="hd">{wordmark()}<div><p class="caps">Pop-up stall · print guide</p><p class="it">{EVENT['days']}</p></div></div>
   <h2>How the stall comes together</h2>
   {mock}
+  <div class="thumbs">{thumbs}</div>
   <ol class="setup">
-    <li><b>Back left:</b> A1 banner on its frame, slightly angled so it can be seen from the walkway.</li>
-    <li><b>Table:</b> plain beige or white base cloth to the floor, A3 runner on top, flowers facing the customer.
-        Use the A2 banner instead of the runner if the table is wider than 1.5 m.</li>
-    <li><b>On the table:</b> B1 Follow us + B2 Our story in wooden block stands, folded pieces in low stacks, Totes &amp; Thailis in a basket.</li>
-    <li><b>Rail:</b> on the right, wooden hangers, light to dark. B4 tag on every piece, B3 "Try it on" sign clipped to the end.</li>
-    <li><b>Bags:</b> kraft bag, cream tissue sealed with a B6 sticker, and a B5 thank-you card inside.</li>
+    <li><b>Back wall:</b> the big backdrop (01), centred behind the table. Its bottom edge sits just above the table top.</li>
+    <li><b>Left:</b> the hanging banner (02) on its frame, angled slightly towards the walkway.</li>
+    <li><b>Table:</b> plain beige or white cloth to the floor, runner (03) on top with the flowers facing customers.</li>
+    <li><b>On the table:</b> Follow along (04) and Our story (05) in wooden block stands, folded pieces in low stacks.</li>
+    <li><b>Right:</b> clothing rail, wooden hangers, light to dark.</li>
   </ol>
   {SMALL_HEM}
 </div>
 <div class="page g">
-  <h2>What to print</h2>
-  <table><tr class="th"><td></td><td>Piece</td><td>Finished size</td><td>Material</td><td>Qty</td><td>Finishing &amp; where it goes</td></tr>{rows}</table>
+  <h2>What to print: 5 pieces</h2>
+  <table class="spec"><tr class="thr"><td></td><td>Piece</td><td>Finished size</td><td>Material</td><td>Qty</td><td>Finishing &amp; where it goes</td></tr>{rows}</table>
+  <h2>QR codes</h2>
+  <table class="qrt"><tr class="thr"><td>Printed on</td><td>Code</td><td>Opens</td><td></td></tr>{qrows}</table>
+  <p class="small">Every code was decoded from the final PDFs and each link opened. Still scan one on the printer's proof.</p>
   <h2>Notes for the printer</h2>
   <ul class="notes">
-    <li>Files are vector PDFs at 100% finished size. Fabric: add 3 cm hem allowance on every side (no bleed is built in).
-        Card: print edge to edge, then trim on the dashed guides.</li>
-    <li>Colours: cream <b>#F7F3EC</b>, maroon <b>#7A1F26</b>, olive <b>#5F6B3A</b>, ink <b>#2A2523</b>. Ask for a small
-        test swatch of the fabric. Maroon goes darker on canvas.</li>
-    <li>If you print on natural or undyed linen, the cream background can be left unprinted so the fabric shows through.</li>
-    <li>Scan every QR code on the proof before the full run.</li>
+    <li>All files are vector PDFs at 100% finished size, so any size prints sharp. Fabric pieces: add 3 cm hem
+        allowance on every side (no bleed is built in). Cards: print edge to edge, then trim to A5.</li>
+    <li>Colours: cream <b>#F7F3EC</b> · maroon <b>#7A1F26</b> · olive <b>#5F6B3A</b> · ink <b>#2A2523</b>.
+        Ask for a small fabric test swatch first, because maroon tends to print darker on canvas.</li>
+    <li>On natural or undyed linen, the cream background can be left unprinted so the fabric shows through.</li>
+    <li>Fabric printing usually takes 1–2 working days, so order 01–03 first.</li>
   </ul>
   <h2>Bring on the day</h2>
   <div class="cols"><ul>
-    <li>Banner frame or pole, cable ties, S-hooks</li><li>Clothing rail + wooden hangers</li><li>Base tablecloth (to the floor)</li>
-    <li>2 wooden block stands, bulldog clips</li><li>Mirror + changing curtain</li><li>Basket for totes &amp; thailis</li></ul><ul>
-    <li>Card reader (charged) + cash float</li><li>Kraft bags, cream tissue, twine</li><li>Sales Receipt form open on a phone</li>
-    <li>Power bank, tape, scissors, pens</li><li>Email sign-up sheet for new arrivals</li><li>Water &amp; snacks ♡</li></ul></div>
+    <li>Cable ties / bungees for the backdrop</li><li>Banner frame or pole + S-hooks</li><li>Base tablecloth (to the floor)</li>
+    <li>2 wooden block stands</li></ul><ul><li>Clothing rail + wooden hangers</li><li>Mirror + changing corner</li>
+    <li>Card reader (charged) + cash float</li><li>Bags, tissue, tape, scissors, pen</li></ul></div>
   {SMALL_HEM}
 </div>""", """
 .g { padding: 12mm 14mm 0; align-items: stretch; page-break-after: always; }
 .hd { display: flex; align-items: flex-end; justify-content: space-between; border-bottom: .3mm solid #2A2523; padding-bottom: 3mm; }
 .hd .wm { text-align: left; } .hd .wm-main { font-size: 12mm; } .hd .wm-by { font-size: 5.6mm; }
 .hd .caps { font-size: 2.6mm; color: #7A1F26; text-align: right; } .hd .it { font-size: 4.4mm; text-align: right; margin-top: 1mm; }
-h2 { font-family: 'Playfair Display'; font-weight: 400; font-size: 6.2mm; margin: 5mm 0 2.5mm; }
-.mock { position: relative; height: 120mm; border-radius: 2mm; overflow: hidden; }
-.wall { position: absolute; inset: 0 0 22% 0; background: linear-gradient(#e9e2d7, #ddd3c5); }
-.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 22%; background: linear-gradient(#c9b9a3, #b8a68e); }
-.frame { position: absolute; left: 6%; bottom: 12%; width: 17%; height: 83%; }
+h2 { font-family: 'Playfair Display'; font-weight: 400; font-size: 6.2mm; margin: 5.5mm 0 2.5mm; }
+.mock { position: relative; height: 112mm; border-radius: 2mm; overflow: hidden; }
+.wall { position: absolute; inset: 0 0 20% 0; background: linear-gradient(#ebe4d9, #ddd3c5); }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 20%; background: linear-gradient(#c9b9a3, #b8a68e); }
+.bdrop { position: absolute; left: 25%; top: 5%; width: 50%; } .bdrop img { width: 100%; display: block; box-shadow: 0 1mm 3mm #0003; }
+.frame { position: absolute; left: 5%; bottom: 10%; width: 15%; height: 82%; }
 .frame .fb { position: absolute; inset: -2.5mm -2mm -5mm; border: 2mm solid #b48a5c; border-bottom: none; }
 .frame img { width: 100%; height: 100%; object-fit: fill; box-shadow: 0 1mm 3mm #0003; }
-.rail { position: absolute; right: 5%; bottom: 12%; width: 30%; height: 72%; border-left: 1.2mm solid #2A2523; border-right: 1.2mm solid #2A2523; }
-.rail .bar { position: absolute; top: 0; left: 0; right: 0; height: 1.2mm; background: #2A2523; }
-.gar { position: absolute; top: 3mm; width: 10%; border-radius: 1.5mm 1.5mm .5mm .5mm; box-shadow: 0 .5mm 1.5mm #0002; }
-.table { position: absolute; left: 27%; bottom: 6%; width: 40%; height: 44%; }
+.rail { position: absolute; right: 4%; bottom: 10%; width: 18%; height: 66%; border-left: 1.1mm solid #2A2523; border-right: 1.1mm solid #2A2523; }
+.rail .bar { position: absolute; top: 0; left: 0; right: 0; height: 1.1mm; background: #2A2523; }
+.gar { position: absolute; top: 3mm; width: 12%; border-radius: 1.5mm 1.5mm .5mm .5mm; box-shadow: 0 .5mm 1.5mm #0002; }
+.table { position: absolute; left: 27%; bottom: 5%; width: 46%; height: 38%; }
 .table .top { position: absolute; top: 0; left: -2%; right: -2%; height: 5%; background: #efe9df; border-radius: 1mm; }
-.table .cloth { position: absolute; top: 5%; left: 0; right: 0; bottom: 0; background: #e8dfd2; box-shadow: inset 0 -2mm 3mm #0001; }
-.runner { position: absolute; top: 5%; left: 33%; width: 34%; bottom: 0; background-size: 100% auto; background-position: center bottom; box-shadow: 0 .5mm 2mm #0002; }
-.card { position: absolute; bottom: 99%; width: 11%; } .card img { width: 100%; display: block; box-shadow: 0 .5mm 1.5mm #0003; }
-.card::after { content: ""; display: block; height: 2.2mm; background: #c79f72; margin: 0 -8%; }
-.c1 { left: 8%; } .c2 { left: 79%; }
-.setup { font-size: 4.1mm; line-height: 1.38; padding-left: 5mm; margin-top: 5mm; } .setup li { margin-bottom: 1.8mm; }
+.table .cloth { position: absolute; top: 5%; left: 0; right: 0; bottom: 0; background: #e6ddd0; box-shadow: inset 0 -2mm 3mm #0001; }
+.runner { position: absolute; top: 5%; left: 36%; width: 28%; bottom: 0; background-size: 100% auto; background-position: center bottom; box-shadow: 0 .5mm 2mm #0002; }
+.card { position: absolute; bottom: 99%; width: 9%; } .card img { width: 100%; display: block; box-shadow: 0 .5mm 1.5mm #0003; }
+.card::after { content: ""; display: block; height: 2mm; background: #c79f72; margin: 0 -8%; }
+.c1 { left: 9%; } .c2 { left: 82%; }
+.thumbs { display: flex; align-items: flex-end; justify-content: space-between; gap: 3mm; margin-top: 5mm; }
+.th { text-align: center; } .th img { display: block; margin: 0 auto; max-height: 30mm; max-width: 52mm; box-shadow: 0 .4mm 1.5mm #0002; }
+.th p { font-size: 2.9mm; margin-top: 1.5mm; } .th b { color: #7A1F26; font-family: 'Playfair Display'; font-weight: 400; }
+.setup { font-size: 3.9mm; line-height: 1.36; padding-left: 5mm; margin-top: 5mm; } .setup li { margin-bottom: 1.4mm; }
 .setup b, .notes b { font-weight: 600; color: #7A1F26; }
-table { width: 100%; border-collapse: collapse; font-size: 3.05mm; line-height: 1.2; }
-td { padding: 1.1mm 1.4mm; border-bottom: .15mm solid #d8cfc3; vertical-align: top; }
-.th td { font-family: 'Karla'; font-size: 2.3mm; text-transform: uppercase; letter-spacing: .15em; color: #7A716B; border-bottom: .3mm solid #2A2523; }
-.sec td { font-family: 'Karla'; font-size: 2.4mm; letter-spacing: .2em; text-transform: uppercase; color: #7A1F26; padding-top: 3.5mm; border-bottom: none; }
-td:first-child { font-family: 'Playfair Display'; color: #7A1F26; width: 7mm; }
-td:nth-child(2) { font-weight: 600; width: 32mm; } td:nth-child(3) { width: 24mm; } td:nth-child(4) { width: 36mm; } td:nth-child(5) { width: 15mm; }
-.notes { font-size: 3.5mm; line-height: 1.32; padding-left: 5mm; } .notes li { margin-bottom: 1.4mm; }
-.cols { display: flex; gap: 8mm; } .cols ul { flex: 1; font-size: 3.4mm; line-height: 1.42; padding-left: 5mm; list-style: '☐  '; }
+table { width: 100%; border-collapse: collapse; font-size: 3.2mm; line-height: 1.25; }
+td { padding: 1.6mm 1.5mm; border-bottom: .15mm solid #d8cfc3; vertical-align: top; }
+.thr td { font-family: 'Karla'; font-size: 2.3mm; text-transform: uppercase; letter-spacing: .15em; color: #7A716B; border-bottom: .3mm solid #2A2523; }
+.spec td:first-child { font-family: 'Playfair Display'; color: #7A1F26; width: 7mm; }
+.spec td:nth-child(2) { font-weight: 600; width: 27mm; } .spec td:nth-child(3) { width: 23mm; } .spec td:nth-child(4) { width: 38mm; } .spec td:nth-child(5) { width: 8mm; }
+.qrt td:nth-child(2) { font-weight: 600; } .ok { color: #5F6B3A; font-weight: 600; white-space: nowrap; }
+.small { font-size: 3.2mm; font-style: italic; color: #7A716B; margin-top: 1.5mm; }
+.notes { font-size: 3.6mm; line-height: 1.36; padding-left: 5mm; } .notes li { margin-bottom: 1.3mm; }
+.cols { display: flex; gap: 8mm; } .cols ul { flex: 1; font-size: 3.6mm; line-height: 1.5; padding-left: 5mm; list-style: '☐  '; }
 """)
 
 
@@ -543,9 +432,10 @@ def render_guide():
         pg = b.new_page(viewport={"width": 794, "height": 1123})
         pg.goto(f.as_uri()); pg.wait_for_load_state("networkidle"); pg.evaluate("document.fonts.ready")
         pg.pdf(path=str(ROOT / "print" / "00-PRINT-GUIDE.pdf"), width="210mm", height="297mm", print_background=True)
-        pg.screenshot(path=str(ROOT / "preview" / "00-print-guide-p1.png"))
         b.close()
 
 
 if __name__ == "__main__":
+    render()
     render_guide()
+    print("done")
